@@ -1,0 +1,394 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000000000000000000070 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000060 /* AppDelegate.swift */; };
+		100000000000000000000071 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000061 /* Models.swift */; };
+		100000000000000000000072 /* ClipboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000062 /* ClipboardWatcher.swift */; };
+		100000000000000000000073 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000063 /* HistoryManager.swift */; };
+		100000000000000000000074 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000064 /* HotKeyManager.swift */; };
+		100000000000000000000075 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000065 /* StatusBarController.swift */; };
+		100000000000000000000076 /* HistoryPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000066 /* HistoryPanelController.swift */; };
+		100000000000000000000077 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000067 /* SettingsWindowController.swift */; };
+		100000000000000000000078 /* HotkeyRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000068 /* HotkeyRecorderView.swift */; };
+		100000000000000000000079 /* HistoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006A /* HistoryManagerTests.swift */; };
+		10000000000000000000007A /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006B /* AppIcon.png */; };
+		10000000000000000000007B /* MenuBarIconTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006C /* MenuBarIconTemplate.png */; };
+		10000000000000000000007C /* MenuBarIconTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006D /* MenuBarIconTemplate@2x.png */; };
+		10000000000000000000007D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006E /* Assets.xcassets */; };
+		10000000000000000000007E /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006F /* AppIcon.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		100000000000000000000090 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 100000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000000000010;
+			remoteInfo = Clippuccino;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		100000000000000000000050 /* Clippuccino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clippuccino.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000000051 /* ClippuccinoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClippuccinoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000000060 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		100000000000000000000061 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		100000000000000000000062 /* ClipboardWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardWatcher.swift; sourceTree = "<group>"; };
+		100000000000000000000063 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
+		100000000000000000000064 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
+		100000000000000000000065 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		100000000000000000000066 /* HistoryPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPanelController.swift; sourceTree = "<group>"; };
+		100000000000000000000067 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		100000000000000000000068 /* HotkeyRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyRecorderView.swift; sourceTree = "<group>"; };
+		100000000000000000000069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10000000000000000000006A /* HistoryManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManagerTests.swift; sourceTree = "<group>"; };
+		10000000000000000000006B /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		10000000000000000000006C /* MenuBarIconTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuBarIconTemplate.png; sourceTree = "<group>"; };
+		10000000000000000000006D /* MenuBarIconTemplate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBarIconTemplate@2x.png"; sourceTree = "<group>"; };
+		10000000000000000000006E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		10000000000000000000006F /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		100000000000000000000081 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		100000000000000000000084 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		100000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000040 /* Clippuccino */,
+				100000000000000000000041 /* Tests */,
+				100000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		100000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000050 /* Clippuccino.app */,
+				100000000000000000000051 /* ClippuccinoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		100000000000000000000040 /* Clippuccino */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000060 /* AppDelegate.swift */,
+				100000000000000000000061 /* Models.swift */,
+				100000000000000000000062 /* ClipboardWatcher.swift */,
+				100000000000000000000063 /* HistoryManager.swift */,
+				100000000000000000000064 /* HotKeyManager.swift */,
+				100000000000000000000065 /* StatusBarController.swift */,
+				100000000000000000000066 /* HistoryPanelController.swift */,
+				100000000000000000000067 /* SettingsWindowController.swift */,
+				100000000000000000000068 /* HotkeyRecorderView.swift */,
+				100000000000000000000069 /* Info.plist */,
+				100000000000000000000042 /* Resources */,
+			);
+			path = Clippuccino;
+			sourceTree = "<group>";
+		};
+		100000000000000000000042 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000006B /* AppIcon.png */,
+				10000000000000000000006C /* MenuBarIconTemplate.png */,
+				10000000000000000000006D /* MenuBarIconTemplate@2x.png */,
+				10000000000000000000006E /* Assets.xcassets */,
+				10000000000000000000006F /* AppIcon.icns */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		100000000000000000000041 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000006A /* HistoryManagerTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		100000000000000000000010 /* Clippuccino */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 100000000000000000000021 /* Build configuration list for PBXNativeTarget "Clippuccino" */;
+			buildPhases = (
+				100000000000000000000080 /* Sources */,
+				100000000000000000000081 /* Frameworks */,
+				100000000000000000000082 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Clippuccino;
+			productName = Clippuccino;
+			productReference = 100000000000000000000050 /* Clippuccino.app */;
+			productType = "com.apple.product-type.application";
+		};
+		100000000000000000000011 /* ClippuccinoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 100000000000000000000022 /* Build configuration list for PBXNativeTarget "ClippuccinoTests" */;
+			buildPhases = (
+				100000000000000000000083 /* Sources */,
+				100000000000000000000084 /* Frameworks */,
+				100000000000000000000085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				100000000000000000000091 /* PBXTargetDependency */,
+			);
+			name = ClippuccinoTests;
+			productName = ClippuccinoTests;
+			productReference = 100000000000000000000051 /* ClippuccinoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		100000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					100000000000000000000010 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					100000000000000000000011 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 100000000000000000000010;
+					};
+				};
+			};
+			buildConfigurationList = 100000000000000000000020 /* Build configuration list for PBXProject "Clippuccino" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 100000000000000000000002;
+			productRefGroup = 100000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				100000000000000000000010 /* Clippuccino */,
+				100000000000000000000011 /* ClippuccinoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		100000000000000000000082 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10000000000000000000007A /* AppIcon.png in Resources */,
+				10000000000000000000007B /* MenuBarIconTemplate.png in Resources */,
+				10000000000000000000007C /* MenuBarIconTemplate@2x.png in Resources */,
+				10000000000000000000007D /* Assets.xcassets in Resources */,
+				10000000000000000000007E /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		100000000000000000000085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		100000000000000000000080 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000070 /* AppDelegate.swift in Sources */,
+				100000000000000000000071 /* Models.swift in Sources */,
+				100000000000000000000072 /* ClipboardWatcher.swift in Sources */,
+				100000000000000000000073 /* HistoryManager.swift in Sources */,
+				100000000000000000000074 /* HotKeyManager.swift in Sources */,
+				100000000000000000000075 /* StatusBarController.swift in Sources */,
+				100000000000000000000076 /* HistoryPanelController.swift in Sources */,
+				100000000000000000000077 /* SettingsWindowController.swift in Sources */,
+				100000000000000000000078 /* HotkeyRecorderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		100000000000000000000083 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000079 /* HistoryManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		100000000000000000000091 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 100000000000000000000010 /* Clippuccino */;
+			targetProxy = 100000000000000000000090 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		100000000000000000000030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		100000000000000000000031 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		100000000000000000000032 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Clippuccino/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.Clippuccino;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		100000000000000000000033 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Clippuccino/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.Clippuccino;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		100000000000000000000034 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ClippuccinoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Clippuccino;
+			};
+			name = Debug;
+		};
+		100000000000000000000035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ClippuccinoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Clippuccino;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		100000000000000000000020 /* Build configuration list for PBXProject "Clippuccino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				100000000000000000000030 /* Debug */,
+				100000000000000000000031 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		100000000000000000000021 /* Build configuration list for PBXNativeTarget "Clippuccino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				100000000000000000000032 /* Debug */,
+				100000000000000000000033 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		100000000000000000000022 /* Build configuration list for PBXNativeTarget "ClippuccinoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				100000000000000000000034 /* Debug */,
+				100000000000000000000035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 100000000000000000000001 /* Project object */;
+}

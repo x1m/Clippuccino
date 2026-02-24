@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor folders
+.vscode/
+.idea/
+
+# Xcode user-specific
+xcuserdata/
+*.xcuserdatad/
+*.xcuserstate
+
+# Build artifacts
+DerivedData/
+build/
+*.dSYM/
+
+# Swift Package Manager
+.build/
+
+# Local app artifacts for this project
+Clippuccino/build/
