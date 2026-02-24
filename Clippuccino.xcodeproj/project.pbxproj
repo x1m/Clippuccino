@@ -17,6 +17,7 @@
 		100000000000000000000077 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000067 /* SettingsWindowController.swift */; };
 		100000000000000000000078 /* HotkeyRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000068 /* HotkeyRecorderView.swift */; };
 		100000000000000000000079 /* HistoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006A /* HistoryManagerTests.swift */; };
+		10000000000000000000007F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000052 /* main.swift */; };
 		10000000000000000000007A /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006B /* AppIcon.png */; };
 		10000000000000000000007B /* MenuBarIconTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006C /* MenuBarIconTemplate.png */; };
 		10000000000000000000007C /* MenuBarIconTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006D /* MenuBarIconTemplate@2x.png */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		100000000000000000000050 /* Clippuccino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clippuccino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		100000000000000000000051 /* ClippuccinoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClippuccinoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000000052 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		100000000000000000000060 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		100000000000000000000061 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		100000000000000000000062 /* ClipboardWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardWatcher.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		100000000000000000000040 /* Clippuccino */ = {
 			isa = PBXGroup;
 			children = (
+				100000000000000000000052 /* main.swift */,
 				100000000000000000000060 /* AppDelegate.swift */,
 				100000000000000000000061 /* Models.swift */,
 				100000000000000000000062 /* ClipboardWatcher.swift */,
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10000000000000000000007F /* main.swift in Sources */,
 				100000000000000000000070 /* AppDelegate.swift in Sources */,
 				100000000000000000000071 /* Models.swift in Sources */,
 				100000000000000000000072 /* ClipboardWatcher.swift in Sources */,
@@ -298,6 +302,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Clippuccino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -318,6 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Clippuccino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,12 +342,14 @@
 		100000000000000000000034 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.ClippuccinoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clippuccino.app/Contents/MacOS/Clippuccino";
 				TEST_TARGET_NAME = Clippuccino;
 			};
 			name = Debug;
@@ -348,12 +357,14 @@
 		100000000000000000000035 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.ClippuccinoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clippuccino.app/Contents/MacOS/Clippuccino";
 				TEST_TARGET_NAME = Clippuccino;
 			};
 			name = Release;
