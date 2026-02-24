@@ -26,6 +26,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var historyPanelController: HistoryPanelController!
     private var settingsWindowController: SettingsWindowController!
     private var pasteTargetApplication: NSRunningApplication?
+    private var lastExternalActiveApplication: NSRunningApplication?
+    private var workspaceObserver: NSObjectProtocol?
     private var lastHistoryToggleTime: Date = .distantPast
     private var hasRequestedAccessibilityPermissionThisLaunch = false
 
@@ -73,6 +75,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         settingsWindowController = SettingsWindowController(settings: settings)
 
         wireControllers()
+        startTrackingActiveApplication()
 
         if !hotKeyManager.register(binding: settings.hotkey) {
             settings.hotkey = .default
@@ -85,6 +88,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        if let workspaceObserver {
+            NSWorkspace.shared.notificationCenter.removeObserver(workspaceObserver)
+            self.workspaceObserver = nil
+        }
         clipboardWatcher.stop()
         ttlCleanupTimer?.invalidate()
     }
@@ -258,6 +265,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Swift.min(Swift.max(value, lowerBound), upperBound)
     }
 
+    private func startTrackingActiveApplication() {
+        workspaceObserver = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didActivateApplicationNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard
+                let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication,
+                app.processIdentifier != ProcessInfo.processInfo.processIdentifier
+            else {
+                return
+            }
+            self?.lastExternalActiveApplication = app
+        }
+    }
+
     private func capturePasteTargetApplication() {
         guard let frontmost = NSWorkspace.shared.frontmostApplication else {
             pasteTargetApplication = nil
@@ -273,14 +296,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func performAutoPaste() {
-        guard let targetApplication = pasteTargetApplication else { return }
+        guard let targetApplication = resolvedPasteTargetApplication() else { return }
         guard ensureAccessibilityPermission() else { return }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) { [weak self] in
+        _ = targetApplication.activate(options: [.activateIgnoringOtherApps])
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) { [weak self] in
             _ = targetApplication.activate(options: [.activateIgnoringOtherApps])
             self?.postCommandV()
             self?.pasteTargetApplication = nil
         }
+    }
+
+    private func resolvedPasteTargetApplication() -> NSRunningApplication? {
+        if let pasteTargetApplication {
+            return pasteTargetApplication
+        }
+
+        if let currentFrontmost = NSWorkspace.shared.frontmostApplication,
+           currentFrontmost.processIdentifier != ProcessInfo.processInfo.processIdentifier {
+            return currentFrontmost
+        }
+
+        return lastExternalActiveApplication
     }
 
     private func ensureAccessibilityPermission() -> Bool {

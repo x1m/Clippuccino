@@ -1,6 +1,6 @@
 # Clippuccino
 
-Menu-bar clipboard history app for macOS 13+ built with Swift + AppKit.
+Clipboard history app for macOS 13+ built with Swift + AppKit.
 
 ## Build and run
 
