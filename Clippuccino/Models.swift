@@ -99,7 +99,7 @@ struct HotkeyBinding: Codable, Equatable {
 }
 
 struct SettingsModel: Equatable {
-    static let defaultMaxItems = 200
+    static let defaultMaxItems = 30
     static let minMaxItems = 10
     static let maxMaxItems = 5000
 
@@ -112,6 +112,6 @@ struct SettingsModel: Equatable {
 
     var maxItems: Int = SettingsModel.defaultMaxItems
     var ttlSeconds: Int = SettingsModel.defaultTTLSeconds
-    var startOnLogin: Bool = false
+    var startOnLogin: Bool = true
     var hotkey: HotkeyBinding = .default
 }

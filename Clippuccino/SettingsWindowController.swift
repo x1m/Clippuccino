@@ -19,12 +19,14 @@ final class SettingsWindowController: NSWindowController {
     private var hotkeyRecorderView: HotkeyRecorderView!
 
     private let eraseButton = NSButton(title: "Erase All History", target: nil, action: nil)
+    private let labelColumnWidth: CGFloat = 170
+    private let numericFieldWidth: CGFloat = 86
 
     init(settings: SettingsModel) {
         self.settings = settings
 
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 440, height: 260),
+            contentRect: NSRect(x: 0, y: 0, width: 500, height: 300),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
@@ -58,11 +60,11 @@ final class SettingsWindowController: NSWindowController {
     private func buildUI() {
         guard let contentView = window?.contentView else { return }
 
-        let maxItemsLabel = NSTextField(labelWithString: "Max items in history")
-        maxItemsLabel.setContentHuggingPriority(.required, for: .horizontal)
+        let maxItemsLabel = makeSettingLabel("Max items in history")
 
         maxItemsField.target = self
         maxItemsField.action = #selector(maxItemsFieldChanged)
+        maxItemsField.alignment = .right
 
         maxItemsStepper.minValue = Double(SettingsModel.minMaxItems)
         maxItemsStepper.maxValue = Double(SettingsModel.maxMaxItems)
@@ -70,15 +72,17 @@ final class SettingsWindowController: NSWindowController {
         maxItemsStepper.target = self
         maxItemsStepper.action = #selector(maxItemsStepperChanged)
 
-        let maxItemsRow = NSStackView(views: [maxItemsLabel, maxItemsField, maxItemsStepper])
-        maxItemsRow.orientation = .horizontal
-        maxItemsRow.spacing = 8
+        let maxItemsControls = NSStackView(views: [maxItemsField, maxItemsStepper])
+        maxItemsControls.orientation = .horizontal
+        maxItemsControls.spacing = 8
+        maxItemsControls.alignment = .centerY
+        let maxItemsRow = makeSettingRow(labelView: maxItemsLabel, controlView: maxItemsControls)
 
-        let ttlLabel = NSTextField(labelWithString: "Auto-erase TTL seconds")
-        ttlLabel.setContentHuggingPriority(.required, for: .horizontal)
+        let ttlLabel = makeSettingLabel("Auto-erase TTL (seconds)")
 
         ttlField.target = self
         ttlField.action = #selector(ttlFieldChanged)
+        ttlField.alignment = .right
 
         ttlStepper.minValue = Double(SettingsModel.minTTLSeconds)
         ttlStepper.maxValue = Double(SettingsModel.maxTTLSeconds)
@@ -86,31 +90,39 @@ final class SettingsWindowController: NSWindowController {
         ttlStepper.target = self
         ttlStepper.action = #selector(ttlStepperChanged)
 
-        let ttlRow = NSStackView(views: [ttlLabel, ttlField, ttlStepper])
-        ttlRow.orientation = .horizontal
-        ttlRow.spacing = 8
+        let ttlControls = NSStackView(views: [ttlField, ttlStepper])
+        ttlControls.orientation = .horizontal
+        ttlControls.spacing = 8
+        ttlControls.alignment = .centerY
+        let ttlRow = makeSettingRow(labelView: ttlLabel, controlView: ttlControls)
 
+        let startOnLoginLabel = makeSettingLabel("Start on login")
+        startOnLoginCheckbox.title = "Enabled"
         startOnLoginCheckbox.target = self
         startOnLoginCheckbox.action = #selector(startOnLoginChanged)
+        let startOnLoginRow = makeSettingRow(labelView: startOnLoginLabel, controlView: startOnLoginCheckbox)
 
-        let hotkeyLabel = NSTextField(labelWithString: "Open History hotkey")
-        hotkeyLabel.setContentHuggingPriority(.required, for: .horizontal)
+        let hotkeyLabel = makeSettingLabel("Open History hotkey")
         hotkeyRecorderView = HotkeyRecorderView(hotkey: settings.hotkey)
         hotkeyRecorderView.onHotkeyRecorded = { [weak self] newHotkey in
             self?.handleHotkeyUpdate(newHotkey)
         }
+        let hotkeyRow = makeSettingRow(labelView: hotkeyLabel, controlView: hotkeyRecorderView)
 
-        let hotkeyRow = NSStackView(views: [hotkeyLabel, hotkeyRecorderView])
-        hotkeyRow.orientation = .horizontal
-        hotkeyRow.spacing = 8
+        let eraseLabel = makeSettingLabel("History")
 
         eraseButton.bezelStyle = .rounded
         eraseButton.target = self
         eraseButton.action = #selector(eraseAllHistoryTapped)
+        let eraseRow = makeSettingRow(labelView: eraseLabel, controlView: eraseButton)
 
-        let rootStack = NSStackView(views: [maxItemsRow, ttlRow, startOnLoginCheckbox, hotkeyRow, eraseButton])
+        let separator = NSBox()
+        separator.boxType = .separator
+
+        let rootStack = NSStackView(views: [maxItemsRow, ttlRow, startOnLoginRow, hotkeyRow, separator, eraseRow])
         rootStack.orientation = .vertical
-        rootStack.spacing = 14
+        rootStack.spacing = 12
+        rootStack.alignment = .leading
         rootStack.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(rootStack)
@@ -119,9 +131,34 @@ final class SettingsWindowController: NSWindowController {
             rootStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             rootStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             rootStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            maxItemsField.widthAnchor.constraint(equalToConstant: 80),
-            ttlField.widthAnchor.constraint(equalToConstant: 80)
+            rootStack.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
+            maxItemsField.widthAnchor.constraint(equalToConstant: numericFieldWidth),
+            ttlField.widthAnchor.constraint(equalToConstant: numericFieldWidth),
+            separator.widthAnchor.constraint(equalTo: rootStack.widthAnchor)
         ])
+    }
+
+    private func makeSettingLabel(_ text: String) -> NSTextField {
+        let label = NSTextField(labelWithString: text)
+        label.alignment = .right
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.widthAnchor.constraint(equalToConstant: labelColumnWidth).isActive = true
+        return label
+    }
+
+    private func makeSettingRow(labelView: NSView, controlView: NSView) -> NSStackView {
+        controlView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        controlView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        let row = NSStackView(views: [labelView, controlView])
+        row.orientation = .horizontal
+        row.alignment = .centerY
+        row.spacing = 12
+        row.translatesAutoresizingMaskIntoConstraints = false
+        row.widthAnchor.constraint(equalToConstant: 460).isActive = true
+        return row
     }
 
     private func applySettingsToControls() {

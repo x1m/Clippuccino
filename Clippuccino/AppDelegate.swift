@@ -76,6 +76,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         wireControllers()
         startTrackingActiveApplication()
+        synchronizeStartOnLoginPreference()
 
         if !hotKeyManager.register(binding: settings.hotkey) {
             settings.hotkey = .default
@@ -204,6 +205,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         settingsWindowController.updateSettings(settings)
     }
 
+    private func synchronizeStartOnLoginPreference() {
+        let desiredState = settings.startOnLogin
+        let actualState = isStartOnLoginEnabled()
+
+        if desiredState != actualState {
+            do {
+                if desiredState {
+                    try SMAppService.mainApp.register()
+                } else {
+                    try SMAppService.mainApp.unregister()
+                }
+            } catch {
+                // Keep running even if login item registration cannot be changed at launch.
+            }
+        }
+
+        settings.startOnLogin = isStartOnLoginEnabled()
+        persistSettings()
+        settingsWindowController.updateSettings(settings)
+    }
+
     private func isStartOnLoginEnabled() -> Bool {
         switch SMAppService.mainApp.status {
         case .enabled:
@@ -239,16 +261,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             hotkey = defaultHotkey
         }
 
-        let serviceState = isStartOnLoginEnabled()
-        let _ = defaults.object(forKey: DefaultsKey.startOnLogin) as? Bool ?? serviceState
+        let startOnLoginPreference = defaults.object(forKey: DefaultsKey.startOnLogin) as? Bool ?? true
 
         var model = SettingsModel()
         model.maxItems = maxItems
         model.ttlSeconds = ttl
         model.hotkey = hotkey
-        model.startOnLogin = serviceState
+        model.startOnLogin = startOnLoginPreference
 
-        defaults.set(serviceState, forKey: DefaultsKey.startOnLogin)
+        defaults.set(startOnLoginPreference, forKey: DefaultsKey.startOnLogin)
         return model
     }
 
