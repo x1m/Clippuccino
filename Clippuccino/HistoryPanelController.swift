@@ -230,6 +230,8 @@ final class HistoryPanelController: NSWindowController {
         tableView.intercellSpacing = NSSize(width: 0, height: 0)
         tableView.focusRingType = .none
         tableView.columnAutoresizingStyle = .firstColumnOnlyAutoresizingStyle
+        tableView.target = self
+        tableView.action = #selector(historyRowClicked(_:))
 
         scrollView.documentView = tableView
         scrollView.hasVerticalScroller = true
@@ -328,6 +330,14 @@ final class HistoryPanelController: NSWindowController {
 
     @objc private func quitTapped() {
         onQuit?()
+    }
+
+    @objc private func historyRowClicked(_ sender: Any?) {
+        let clickedRow = tableView.clickedRow
+        let row = clickedRow >= 0 ? clickedRow : tableView.selectedRow
+        guard row >= 0, row < filteredItems.count else { return }
+        selectRow(row)
+        selectCurrentRow()
     }
 
     private func handleKeyDown(_ event: NSEvent) -> Bool {
